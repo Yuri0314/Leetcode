@@ -1,6 +1,3 @@
-import java.util.HashSet;
-import java.util.Set;
-
 /*
  * @lc app=leetcode id=141 lang=java
  *
