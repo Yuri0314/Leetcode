@@ -16,7 +16,7 @@ class Solution {
         for (int i = 1; i < nums.length; ++i) {
             left_max[i] = (i % k == 0) ? nums[i] : Math.max(left_max[i - 1], nums[i]);
             int j = nums.length - i - 1;
-            right_max[j] = (j % k == 0) ? nums[j] : Math.max(right_max[j + 1], nums[j]);
+            right_max[j] = ((j + 1) % k == 0) ? nums[j] : Math.max(right_max[j + 1], nums[j]);
         }
 
         int[] ans = new int[nums.length - k + 1];
