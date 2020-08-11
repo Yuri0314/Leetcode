@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -24,7 +24,7 @@ import java.util.List;
  * }
  */
 class Solution {
-    private List<Integer> ans = new LinkedList<Integer>();
+    private List<Integer> ans = new ArrayList<Integer>();
     public List<Integer> postorderTraversal(TreeNode root) {
         TreeNode cur = root;
         TreeNode pre = null;
