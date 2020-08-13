@@ -19,15 +19,9 @@ import java.util.Queue;
  * }
  */
 class Solution {
-    private Comparator<ListNode> listNodeComparator = new Comparator<ListNode>() {
-        public int compare(ListNode node1, ListNode node2) {
-            return node1.val - node2.val;
-        }
-    };
-
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) return null;
-        Queue<ListNode> heap = new PriorityQueue<ListNode>(lists.length, listNodeComparator);
+        Queue<ListNode> heap = new PriorityQueue<ListNode>(lists.length, (node1, node2) -> node1.val - node2.val);
         for (ListNode list : lists) {
             if (list != null) heap.add(list);
         }
