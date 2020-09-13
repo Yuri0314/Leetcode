@@ -69,7 +69,7 @@ class Solution {
         int steps;
         int heuristic;
         /**
-         * 使用当前状态与目标状态的对应位置不同块数计算
+         * 使用曼哈顿距离计算
          * @param board
          * @param steps
          */
