@@ -20,8 +20,8 @@ class Solution {
         State start = new State(Arrays.deepToString(board).replaceAll("[\\[\\]\\,\\s]", ""));    // 将整个棋盘的当前摆放状态转换为一个字符串来存储表示
         bound = start.cost; // 用当前状态的代价估计值来初始化最大界限深度
         steps = 0;
-        while (!dfs(start, 0, 4) && bound < 19) ++bound;    // 限定最大搜索深度为19
-        return bound < 19 ? steps : -1;
+        while (!dfs(start, 0, 4) && bound < 20) ++bound;    // 限定最大搜索深度为20
+        return bound < 20 ? steps : -1;
     }
 
     private boolean dfs(State cur, int steps, int lastDir) {
