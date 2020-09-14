@@ -20,10 +20,10 @@ class Solution {
         Set<String> seen = new HashSet<String>();   // 用来判断当前摆放状态是否已经走过
         State start = new State(Arrays.deepToString(board).replaceAll("[\\[\\]\\,\\s]", ""), 0);    // 将整个棋盘的当前摆放状态转换为一个字符串来存储表示
         heap.add(start);
-        seen.add(start.boardStr);
         while (!heap.isEmpty()) {
             State cur = heap.remove();
             if (cur.boardStr.equals(target)) return cur.steps;
+            if (seen.contains(cur.boardStr)) continue;
             int pos = cur.boardStr.indexOf("0");
             int x = pos / colNum, y = pos % colNum;
             for (int[] move: moves) {
@@ -34,12 +34,13 @@ class Solution {
                     chs[pos] = chs[newPos];
                     chs[newPos] = '0';
                     String nextStr = String.valueOf(chs);
-                    if (seen.add(nextStr)) {
+                    if (!seen.contains(nextStr)) {
                         State next = new State(nextStr, cur.steps + 1);
                         heap.add(next);
                     }
                 }
             }
+            seen.add(cur.boardStr);
         }
         return -1;
     }
