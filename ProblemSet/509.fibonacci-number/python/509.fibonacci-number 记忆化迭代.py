@@ -11,10 +11,8 @@ class Solution:
             return n
         pre1, pre2 = 0, 1
         for _ in range(2, n + 1):
-            cur = pre1 + pre2
-            pre1 = pre2
-            pre2 = cur
-        return cur
+            pre1, pre2 = pre2, pre1 + pre2
+        return pre2
         
 # @lc code=end
 
