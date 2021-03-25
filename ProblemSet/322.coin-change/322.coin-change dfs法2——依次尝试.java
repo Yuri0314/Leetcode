@@ -24,7 +24,7 @@ class Solution {
             return;
         }
         for (int i = index; i >= 0; --i) {
-            if ((ans - cnt) * coins[index] < amount) break; // 剪枝
+            if ((ans - cnt) * coins[i] < amount) break; // 剪枝
             if (coins[i] <= amount)
                 dfs(i, amount - coins[i], cnt + 1);
         }
