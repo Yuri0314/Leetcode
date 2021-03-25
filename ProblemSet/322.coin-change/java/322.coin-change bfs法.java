@@ -21,8 +21,8 @@ class Solution {
             ++steps;
             for (int sz = queue.size(); sz > 0; --sz) {
                 int cur = queue.remove();
-                for (int i = 0; i < coins.length; ++i) {
-                    int next = cur + coins[i];
+                for (int coin : coins) {
+                    int next = cur + coin;
                     if (next == amount) return steps;
                     if (next < amount && seen.add(next)) queue.add(next);
                 }
