@@ -1,3 +1,4 @@
+// 期望时间复杂度O(n)
 class Solution {
     private int[] nums;
     private int index;
