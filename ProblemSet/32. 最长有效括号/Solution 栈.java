@@ -8,7 +8,7 @@ public class Solution {
                 stack.push(i);
             } else {
                 stack.pop();
-                if (stack.empty()) {
+                if (stack.isEmpty()) {
                     stack.push(i);
                 } else {
                     maxans = Math.max(maxans, i - stack.peek());
