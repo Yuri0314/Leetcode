@@ -1,3 +1,4 @@
+// 如果 A[i] == B[j]，那么我们知道 A[i:] 与 B[j:] 的最长公共前缀为 A[i + 1:] 与 B[j + 1:] 的最长公共前缀的长度加一，否则我们知道 A[i:] 与 B[j:] 的最长公共前缀为零。
 // 时间复杂度O(n*m)
 class Solution {
     public int findLength(int[] A, int[] B) {
