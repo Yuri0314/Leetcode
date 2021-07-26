@@ -1,62 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public ListNode sortList(ListNode head) {
-        if (head == null) {
-            return head;
-        }
-        int length = 0;
-        ListNode node = head;
-        while (node != null) {
-            length++;
-            node = node.next;
-        }
-        ListNode dummyHead = new ListNode(0, head);
-        for (int subLength = 1; subLength < length; subLength <<= 1) {
-            ListNode prev = dummyHead, curr = dummyHead.next;
-            while (curr != null) {
-                ListNode head1 = curr;
-                for (int i = 1; i < subLength && curr.next != null; i++) {
-                    curr = curr.next;
+        int len = 0;
+        for (ListNode p = head; p != null; ++len, p = p.next);
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        for (int subLen = 1; subLen < len; subLen <<= 1) {
+            ListNode pre = dummy, cur = dummy.next;
+            while (cur != null) {
+                ListNode p1 = cur;
+                for (int i = 1; i < subLen && cur.next != null; ++i) 
+                    cur = cur.next;
+                ListNode p2 = cur.next;
+                cur.next = null;
+                cur = p2;
+                for (int i = 1; i < subLen && cur != null && cur.next != null; ++i)
+                    cur = cur.next;
+                ListNode tmp = null;
+                if (cur != null) {
+                    tmp = cur.next;
+                    cur.next = null;
                 }
-                ListNode head2 = curr.next;
-                curr.next = null;
-                curr = head2;
-                for (int i = 1; i < subLength && curr != null && curr.next != null; i++) {
-                    curr = curr.next;
-                }
-                ListNode next = null;
-                if (curr != null) {
-                    next = curr.next;
-                    curr.next = null;
-                }
-                ListNode merged = merge(head1, head2);
-                prev.next = merged;
-                while (prev.next != null) {
-                    prev = prev.next;
-                }
-                curr = next;
+                ListNode merged = merge(p1, p2);
+                pre.next = merged;
+                while (pre.next != null) pre = pre.next;
+                cur = tmp;
             }
         }
-        return dummyHead.next;
+        return dummy.next;
     }
 
-    public ListNode merge(ListNode head1, ListNode head2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;
-        while (temp1 != null && temp2 != null) {
-            if (temp1.val <= temp2.val) {
-                temp.next = temp1;
-                temp1 = temp1.next;
-            } else {
-                temp.next = temp2;
-                temp2 = temp2.next;
+    private ListNode merge(ListNode p1, ListNode p2) {
+        ListNode dummy = new ListNode();
+        ListNode p = dummy;
+        while (p1 != null && p2 != null) {
+            if (p1.val <= p2.val) {
+                p.next = p1;
+                p1 = p1.next;
             }
-            temp = temp.next;
+            else {
+                p.next = p2;
+                p2 = p2.next;
+            }
+            p = p.next;
         }
-        if (temp1 != null) {
-            temp.next = temp1;
-        } else if (temp2 != null) {
-            temp.next = temp2;
-        }
-        return dummyHead.next;
+        if (p1 != null) p.next = p1;
+        if (p2 != null) p.next = p2;
+        return dummy.next;
     }
 }
