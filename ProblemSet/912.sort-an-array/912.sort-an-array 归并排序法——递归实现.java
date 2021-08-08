@@ -6,27 +6,28 @@
 
 // @lc code=start
 class Solution {
+    private int[] tmp;
     public int[] sortArray(int[] nums) {
-        int[] tmp = new int[nums.length];
-        mergeSort(nums, tmp, 0, nums.length - 1);
+        tmp = new int[nums.length];
+        mergeSort(nums, 0, nums.length - 1);
         return nums;
     }
 
-    private void mergeSort(int[] nums, int[] tmp, int left, int right) {
+    private void mergeSort(int[] nums, int left, int right) {
         if (left < right) {
             int mid = left + ((right - left) >> 1);
-            mergeSort(nums, tmp, left, mid);
-            mergeSort(nums, tmp, mid + 1, right);
-            merge(nums, tmp, left, mid, mid + 1, right);
+            mergeSort(nums, left, mid);
+            mergeSort(nums, mid + 1, right);
+            merge(nums, left, mid, mid + 1, right);
         }
     }
 
-    private void merge(int[] nums, int[] tmp, int lstart, int lend, int rstart, int rend) {
-        int i = lstart, j = rstart, pos = lstart;
-        while (i <= lend && j <= rend) tmp[pos++] = nums[i] <= nums[j] ? nums[i++] : nums[j++];
-        while (i <= lend) tmp[pos++] = nums[i++];
-        while (j <= rend) tmp[pos++] = nums[j++];
-        for (int k = lstart; k <= rend; ++k) nums[k] = tmp[k];
+    private void merge(int[] nums, int lStart, int lEnd, int rStart, int rEnd) {
+        int i = lStart, j = rStart, pos = lStart;
+        while (i <= lEnd && j <= rEnd) tmp[pos++] = nums[i] <= nums[j] ? nums[i++] : nums[j++];
+        while (i <= lEnd) tmp[pos++] = nums[i++];
+        while (j <= rEnd) tmp[pos++] = nums[j++];
+        for (int k = lStart; k <= rEnd; ++k) nums[k] = tmp[k];
     }
 }
 // @lc code=end
