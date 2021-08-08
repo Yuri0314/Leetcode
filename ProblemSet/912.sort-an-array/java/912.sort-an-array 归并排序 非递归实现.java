@@ -41,7 +41,6 @@ class Solution {
         while (i <= lEnd) tmp[pos++] = nums[i++];
         while (j <= rEnd) tmp[pos++] = nums[j++];
     }
-
 }
 // @lc code=end
 
