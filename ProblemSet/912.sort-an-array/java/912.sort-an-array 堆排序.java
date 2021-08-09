@@ -12,18 +12,18 @@ class Solution {
     }
 
     private void heapSort(int[] nums) {
-        for (int i = nums.length / 2 - 1; i >= 0; --i)
+        for (int i = (nums.length >> 1) - 1; i >= 0; --i)
             maxHeapify(nums, i, nums.length);
         for (int i = nums.length - 1; i > 0; --i) {
-            swap(nums, i, 0);
+            swap(nums, 0, i);
             maxHeapify(nums, 0, i);
         }
     }
 
     private void maxHeapify(int[] nums, int root, int len) {
         int tmp = nums[root];
-        while ((root * 2) + 1 < len) {
-            int child = (root * 2) + 1;
+        while ((root << 1) + 1 < len) {
+            int child = (root << 1) + 1;
             if (child + 1 != len && nums[child] < nums[child + 1]) ++child;
             if (tmp >= nums[child]) break;
             else nums[root] = nums[child];
