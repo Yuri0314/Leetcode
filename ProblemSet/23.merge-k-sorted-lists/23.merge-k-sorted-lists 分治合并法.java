@@ -15,6 +15,8 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+// 时间复杂度为O(kn×logk)
+// 空间复杂度为O(1)
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) return null;
