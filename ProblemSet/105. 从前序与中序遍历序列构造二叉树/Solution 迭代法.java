@@ -10,8 +10,10 @@ class Solution {
             return null;
         }
         TreeNode root = new TreeNode(preorder[0]);
+        // 用一个栈维护「当前节点的所有还没有考虑过右儿子的祖先节点」，栈顶就是当前节点
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
         stack.push(root);
+        // 用一个指针 index 指向中序遍历的某个位置，初始值为 0
         int inorderIndex = 0;
         for (int i = 1; i < preorder.length; i++) {
             int preorderVal = preorder[i];
