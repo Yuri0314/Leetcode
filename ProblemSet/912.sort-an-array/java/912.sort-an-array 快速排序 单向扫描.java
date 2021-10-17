@@ -25,7 +25,7 @@ class Solution {
         int pivot = new Random().nextInt(right - left + 1) + left;
         swap(nums, left, pivot);
         int i = left;
-        for (int j = i + 1; j <= right; ++j) {
+        for (int j = left + 1; j <= right; ++j) {
             if (nums[j] < nums[left]) 
                 swap(nums, ++i, j);
         }
