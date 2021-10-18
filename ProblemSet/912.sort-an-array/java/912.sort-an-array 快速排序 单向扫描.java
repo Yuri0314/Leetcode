@@ -9,16 +9,16 @@ import java.util.Random;
 // @lc code=start
 class Solution {
     public int[] sortArray(int[] nums) {
-        return quickSort(nums, 0, nums.length - 1);
+        quickSort(nums, 0, nums.length - 1);
+        return nums;
     }
 
-    private int[] quickSort(int[] nums, int left, int right) {
+    private void quickSort(int[] nums, int left, int right) {
         if (left < right) {
             int pos = partition(nums, left, right);
             quickSort(nums, left, pos - 1);
             quickSort(nums, pos + 1, right);
         }
-        return nums;
     } 
 
     private int partition(int[] nums, int left, int right) {
