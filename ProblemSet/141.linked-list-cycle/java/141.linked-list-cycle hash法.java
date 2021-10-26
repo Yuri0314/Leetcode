@@ -23,10 +23,9 @@ public class Solution {
     public boolean hasCycle(ListNode head) {
         Set<ListNode> set = new HashSet<ListNode>();
         while (head != null) {
-            if (set.contains(head)) {
+            if (!set.add(head)) {
                 return true;
             }
-            set.add(head);
             head = head.next;
         }
         return false;
